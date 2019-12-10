@@ -42,6 +42,11 @@ ol, ul {
   display: table;
 }
 
+.ttt9x9-game-board {
+  display: flex;
+  flex-direction: row;
+}
+
 .status {
   margin-bottom: 10px;
 }

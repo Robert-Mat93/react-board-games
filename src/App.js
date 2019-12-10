@@ -1,13 +1,13 @@
 import React from 'react';
 //import logo from './logo.svg';
 import './App.css';
-import GameTicTacToe from "./components/GameTicTacToe"
+import GameTicTacToe9x9 from "./components/GameTicTacToe9x9"
 
 class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <GameTicTacToe /> 
+        <GameTicTacToe9x9 /> 
       </div>
     );
   }
