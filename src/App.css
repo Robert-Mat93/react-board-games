@@ -51,8 +51,17 @@ ol, ul {
   margin-bottom: 10px;
 }
 
+.cell {
+  margin: 1px;
+  border: 3px solid black;
+}
+
+
+.cell.active{
+  border: 3px solid blue;
+}
+
 .square {
-  background: #fff;
   border: 1px solid #999;
   float: left;
   font-size: 24px;
@@ -66,11 +75,25 @@ ol, ul {
   width: 34px;
 }
 
+.square.set-x {
+  color: red;
+}
+
+.square.set-o {
+  color: blue;
+}
+
+.cell.winner-o .square {
+  background-color: #33caff;
+}
+
+.cell.winner-x .square {
+  background-color: #d89561;
+}
+
 .square:focus {
   outline: none;
 }
-
-
 
 .square::-moz-focus-inner {
   border: 0;
