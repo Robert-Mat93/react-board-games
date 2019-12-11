@@ -119,7 +119,11 @@ class GameTicTacToe9x9 extends React.Component {
     }
 
     return (
-      <div className="GameTicTacToe">
+      <div className="GameTicTacToe"> 
+        <div className="game-info">
+          <div><h3>{status}</h3></div>
+          <ol>{/*moves*/}</ol>
+        </div>
         <div className="ttt9x9-game-board">
         <div className="board-row">
           <Cell
@@ -199,10 +203,6 @@ class GameTicTacToe9x9 extends React.Component {
             onClick={(i) => this.handleClick(i)}
           />
         </div>
-        </div>
-        <div className="game-info">
-          <div>{status}</div>
-          <ol>{moves}</ol>
         </div>
       </div>
     );
