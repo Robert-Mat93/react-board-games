@@ -1,20 +1,23 @@
 import React from 'react';
-import axios from 'axios';
-//import logo from './logo.svg';
 import './App.css';
 import GameTicTacToe9x9 from "./components/GameTicTacToe9x9"
+import GameSelect from "./components/GameSelect"
 
 class App extends React.Component {
 	constructor(props) {
     super(props);
     this.state = {
       gameID: "",
-      messages: [],
-      source: null,
     };
 	}
 
-  setEventListener() {
+  setGameID(id) {
+    this.setState({
+      gameID: id
+    });
+  }
+
+  /*setEventListener() {
     const { source } = this.state
     source.addEventListener('message', message => {
       const messages = this.state.messages.slice()
@@ -36,17 +39,25 @@ class App extends React.Component {
         messages: ['hello', 'world'] 
       }, this.setEventListener);
     })
-  }
+  }*/
 
   render() {
-    return (
-      <div className="App">
-        <GameTicTacToe9x9 /> 
-        <ul>
-        {this.state.messages.map(m => (<li>{m}</li>))}
-        </ul>
-      </div>
-    );
+    if (this.state.gameID === "") {
+      return (
+        <div className="App">
+          <GameSelect
+            gameID={this.state.gameID}
+            setGameID={(id) => this.setGameID(id)}
+          />
+        </div>
+      );
+    } else {
+      return (
+        <div className="App">
+          <GameTicTacToe9x9 /> 
+        </div>
+      );
+    }
   }
 }
 

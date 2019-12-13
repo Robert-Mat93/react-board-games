@@ -32,6 +32,52 @@ body {
   background: linear-gradient(to bottom, rgba(206,220,231,1) 0%,rgba(89,106,114,1) 100%);
 }
 
+.GameSelect {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.join, .start {
+  box-sizing: border-box;
+  width: 15em;
+  height: 3em;
+  font-size: 20px;
+  border-radius: 0.5em;
+  margin: 0.5em;
+  box-shadow: 0 0 1em rgba(0,0,0,0.2);
+  color: white;
+  font-family: sans-serif;
+  text-transform: capitalize;
+  line-height: 3em;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.join {
+  background: linear-gradient(to right, teal, deepskyblue);
+  text-align: left;
+  padding-left: 10%;
+  transform: perspective(500px) rotateY(45deg);
+}
+
+.join:hover {
+  transform: perspective(200px) rotateY(45deg);
+  padding-left: 5%;
+}
+
+.start {
+  background: linear-gradient(to left, teal, deepskyblue);
+  text-align: right;
+  padding-right: 10%;
+  transform: perspective(500px) rotateY(-45deg);
+}
+
+.start:hover {
+  transform: perspective(200px) rotateY(-45deg);
+  padding-left: 5%;
+}
+
 ol, ul {
   padding-left: 30px;
 }
@@ -91,11 +137,11 @@ ol, ul {
   background-color: #d89561;
 }
 
-.square:focus {
+.square:focus, .start:focus, .join:focus {
   outline: none;
 }
 
-.square::-moz-focus-inner {
+.square::-moz-focus-inner, .start::-moz-focus-inner, .join::-moz-focus-inner {
   border: 0;
 }
 

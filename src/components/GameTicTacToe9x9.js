@@ -67,7 +67,8 @@ class GameTicTacToe9x9 extends React.Component {
     }
     squares[data.cell][data.square] = this.state.xIsNext ? 'X' : 'O';
     const winner = this.calculateCellWinner(squares[data.cell]);
-    const active = ((squares[data.square].indexOf(null) !== -1) ? data.square.toString() : null);
+    const lastActive = this.state.activeCell;
+    const active = ((squares[data.square].indexOf(null) !== -1) ? data.square.toString() : ((squares[lastActive].indexOf(null) !== -1) ? lastActive.toString() : null));
     winners[data.cell] = winner;
     this.setState({
       history: history.concat([{
@@ -102,7 +103,7 @@ class GameTicTacToe9x9 extends React.Component {
     const winners = current.winners.slice();
     const winner = this.calculateWinner(winners);
     const moves = history.map((step, move) => {
-      const desc = move ?
+    const desc = move ?
         'Go to move #' + move :
         'Go to game start';
       return (
