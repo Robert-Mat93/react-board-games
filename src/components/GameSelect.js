@@ -1,13 +1,22 @@
 import React from 'react';
-import axios from 'axios';
+import Popup from "reactjs-popup";
+import Content from "./Content.js";
+import API from './Api.js';
 import '../App.css';
 
 class GameSelect extends React.Component {
 	startGame() {
-		this.props.setGameID("5");
+    API.get(`start_game`)
+      .then(res => {
+      const data = res.data;
+      if (data.hasOwnProperty('game_id')) {
+  		  this.props.setGameID(data.game_id, "X");
+      }
+    })
  	}
 
- 	joinGame() {
+ 	joinGame(gameID) {
+    this.props.setGameID(gameID, "O");
  	}
 
 	render() {
@@ -16,9 +25,16 @@ class GameSelect extends React.Component {
 				<button className="start"  onClick={() => this.startGame()}>
       				New Game
     			</button>
-    			<button className="join" onClick={() => this.joinGame()}>
-      				Join Game
-    			</button>
+        <div>
+          <Popup modal className="popup" trigger={
+    			  <button className="join">
+    			    Join Game
+            </button>}>
+            <Content
+              confirm = {(id) => this.joinGame(id)}
+            />
+          </Popup>
+        </div>
 			</div>
 		);
 	}

@@ -8,38 +8,16 @@ class App extends React.Component {
     super(props);
     this.state = {
       gameID: "",
+      player: "",
     };
 	}
 
-  setGameID(id) {
+  setGameID(id, player) {
     this.setState({
-      gameID: id
+      gameID: id,
+      player: player
     });
   }
-
-  /*setEventListener() {
-    const { source } = this.state
-    source.addEventListener('message', message => {
-      const messages = this.state.messages.slice()
-      console.log(messages);
-      console.log(messages.concat(message.data));
-      this.setState({ messages: messages.concat(message.data)})
-    })
-  }
-
-	componentDidMount () {
-    axios.get(`http://localhost:5000/start_game`)
-      .then(res => {
-      const data = res.data;
-        console.log(data);
-      const href = "http://localhost:5000/join_game/" + data.game_id;
-      this.setState({
-        gameID: data.game_id,
-		    source : new EventSource(href),
-        messages: ['hello', 'world'] 
-      }, this.setEventListener);
-    })
-  }*/
 
   render() {
     if (this.state.gameID === "") {
@@ -47,14 +25,17 @@ class App extends React.Component {
         <div className="App">
           <GameSelect
             gameID={this.state.gameID}
-            setGameID={(id) => this.setGameID(id)}
+            setGameID={(id,player) => this.setGameID(id,player)}
           />
         </div>
       );
     } else {
       return (
         <div className="App">
-          <GameTicTacToe9x9 /> 
+          <GameTicTacToe9x9 
+            gameID={this.state.gameID}
+            player={this.state.player}
+          /> 
         </div>
       );
     }
