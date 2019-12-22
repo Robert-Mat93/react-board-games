@@ -33,10 +33,12 @@ class GameTicTacToe9x9 extends React.Component {
       const squares = current.squares.slice();
       const winners = current.winners.slice();
       squares[data.cell][data.square] = data.player;
-      const winner = this.calculateCellWinner(squares[data.cell]);
       const lastActive = this.state.activeCell;
       const active = ((squares[data.square].indexOf(null) !== -1) ? data.square.toString() : ((squares[lastActive].indexOf(null) !== -1) ? lastActive.toString() : null));
-      winners[data.cell] = winner;
+      if (winners[data.cell] === null) {
+        const winner = this.calculateCellWinner(squares[data.cell]);
+        winners[data.cell] = winner;
+      }
       this.setState({
         history: history.concat([{
           squares: squares,
@@ -74,6 +76,9 @@ class GameTicTacToe9x9 extends React.Component {
         return squares[a];
       }
     }
+    if (squares.indexOf(null) === -1) {
+      return '-';
+    }
     return null;
   }
 
@@ -83,7 +88,7 @@ class GameTicTacToe9x9 extends React.Component {
     for (let i = 0; i < winners.length; i++) {
       if (winners[i] === 'X') {
         xWonCells++;
-      }else if (winners[i] === 'O') {
+      } else if (winners[i] === 'O') {
         oWonCells++;
       }
     }
@@ -92,6 +97,15 @@ class GameTicTacToe9x9 extends React.Component {
     }
     if (oWonCells === 5) {
       return "O";
+    }
+
+    if (winners.indexOf(null) === -1) {
+      if (xWonCells > oWonCells) {
+        return "X";
+      } else if (oWonCells > xWonCells) {
+        return "O";
+      }
+      return "-";
     }
     return null;
   }
@@ -144,6 +158,9 @@ class GameTicTacToe9x9 extends React.Component {
     });*/
     let status;
     if (winner) {
+      if (winner === "-") {
+        status = 'Tie!';
+      }
       status = 'Winner: ' + winner;
     } else {
       status = 'Next player: ' + this.state.nextPlayer;
