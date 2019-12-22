@@ -24,12 +24,15 @@ class GameTicTacToe9x9 extends React.Component {
     const { source } = this.state
     source.addEventListener('message', message => {
       var data = JSON.parse(message.data);
+      if (data.player !== this.state.nextPlayer) {
+        return;
+      }
       const history = this.state.history.slice(0, this.state.stepNumber + 1);
       const origCurrent = history[history.length - 1];
       let current = origCurrent;
       const squares = current.squares.slice();
       const winners = current.winners.slice();
-      squares[data.cell][data.square] = this.state.nextPlayer;
+      squares[data.cell][data.square] = data.player;
       const winner = this.calculateCellWinner(squares[data.cell]);
       const lastActive = this.state.activeCell;
       const active = ((squares[data.square].indexOf(null) !== -1) ? data.square.toString() : ((squares[lastActive].indexOf(null) !== -1) ? lastActive.toString() : null));
