@@ -48,7 +48,7 @@ class GameTicTacToe9x9 extends React.Component {
   }
 	
   componentDidMount () {
-    const href = "https://3.122.179.159:5000/join_game/" + this.props.gameID;
+    const href = "https://break-games-scr.xyz:5000/join_game/" + this.props.gameID;
     this.setState({
 		  source : new EventSource(href),
     }, this.setEventListener);
