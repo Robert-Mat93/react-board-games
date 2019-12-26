@@ -1,57 +1,43 @@
 import React from 'react';
 import '../App.css';
 
-function Square(props) {
+const Square = ({ value, onClick }) => {
   return (
-    <button className={"square " + (props.value === "X" ? 'set-x': (props.value ==="O" ? 'set-o' : ''))} onClick={props.onClick}>
-      {props.value}
+    <button className={"square " + (value === "X" ? 'set-x': (value ==="O" ? 'set-o' : ''))} onClick={onClick}>
+      {value}
     </button>
   );
 }
 
-class Cell extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      squares: this.props.squares,
-      cellid : props.cellid
-    }
-  }
-
-  onClick(data) {
-    this.props.onClick(data)
-  }
-
-  renderSquare(i) {
+export const Cell = ({ squares, onClick, cellid, active, winner }) => {
+  const renderSquare = i => {
     return (
       <Square
-        value={this.props.squares[i]}
-        onClick={() => this.onClick({cell:this.props.cellid, square: i})}
+        value={squares[i]}
+        onClick={() => onClick({cell:cellid, square: i})}
       />
     );
   }
 
-  render() {
-    return (
-      <div className={"cell " + (this.props.active === this.props.cellid ? 'active ' : ' ') + (this.props.winner === "X" ? 'winner-x': (this.props.winner ==="O" ? 'winner-o' : ''))}>
-        <div className="board-row">
-          {this.renderSquare(0)}
-          {this.renderSquare(1)}
-          {this.renderSquare(2)}
-        </div>
-        <div className="board-row">
-          {this.renderSquare(3)}
-          {this.renderSquare(4)}
-          {this.renderSquare(5)}
-        </div>
-        <div className="board-row">
-          {this.renderSquare(6)}
-          {this.renderSquare(7)}
-          {this.renderSquare(8)}
-        </div>
+  return (
+    <div className={"cell " + (active === cellid ? 'active ' : ' ') + (winner === "X" ? 'winner-x': (winner ==="O" ? 'winner-o' : ''))}>
+      <div className="board-row">
+        {renderSquare(0)}
+        {renderSquare(1)}
+        {renderSquare(2)}
       </div>
-    );
-  }
+      <div className="board-row">
+        {renderSquare(3)}
+        {renderSquare(4)}
+        {renderSquare(5)}
+      </div>
+      <div className="board-row">
+        {renderSquare(6)}
+        {renderSquare(7)}
+        {renderSquare(8)}
+      </div>
+    </div>
+  );
 }
 
 export default Cell;
