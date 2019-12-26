@@ -40,17 +40,24 @@ const calculateCellWinner = squares => {
   return null;
 }
 
+const getArrays = history => {
+  const current = history[history.length - 1];
+  const squares = current.squares.slice();
+  const winners = current.winners.slice();
+  return {
+    winners: winners,
+    squares: squares
+  };
+}
+
 const handleMove = (state, data) => {
   if (data.player !== state.nextPlayer) {
     return state;
   }
   const history = state.history.slice(0, state.stepNumber + 1);
-  const origCurrent = history[history.length - 1];
-  let current = origCurrent;
-  const squares = current.squares.slice();
-  const winners = current.winners.slice();
-  squares[data.cell][data.square] = data.player;
+  const { winners, squares} = getArrays(history);
   const lastActive = state.activeCell;
+  squares[data.cell][data.square] = data.player;
   const active = ((squares[data.square].indexOf(null) !== -1) ? data.square.toString() : ((squares[lastActive].indexOf(null) !== -1) ? lastActive.toString() : null));
   if (winners[data.cell] === null) {
     const winner = calculateCellWinner(squares[data.cell]);
@@ -140,10 +147,7 @@ export const GameTicTacToe9x9 = () => {
 
   const handleClick = data => {
     const history = state.history.slice(0, state.stepNumber + 1);
-    const origCurrent = history[history.length - 1];
-    let current = origCurrent;
-    const squares = current.squares.slice();
-    const winners = current.winners.slice();
+    const {winners, squares} = getArrays(history);
     if (calculateWinner(winners) || squares[data.cell][data.square] 
       || (state.activeCell !== null && state.activeCell !== data.cell.toString())
       || state.nextPlayer !== globalState.player) {
@@ -169,8 +173,7 @@ export const GameTicTacToe9x9 = () => {
   }*/
 
   const history = state.history.slice(0, state.stepNumber + 1);
-  const current = history[history.length - 1];
-  const winners = current.winners.slice();
+  const { winners, squares } = getArrays(history);
   const winner = calculateWinner(winners);
   /*const moves = history.map((step, move) => {
   const desc = move ?
@@ -205,21 +208,21 @@ export const GameTicTacToe9x9 = () => {
           cellid="0"
           active={state.activeCell}
           winner={state.cellWinners[0]}
-          squares={current.squares[0]}
+          squares={squares[0]}
           onClick={(i) => handleClick(i)}
         />
         <Cell
           cellid="3"
           active={state.activeCell}
           winner={state.cellWinners[3]}
-          squares={current.squares[3]}
+          squares={squares[3]}
           onClick={(i) => handleClick(i)}
         />
         <Cell
           cellid="6"
           active={state.activeCell}
           winner={state.cellWinners[6]}
-          squares={current.squares[6]}
+          squares={squares[6]}
           onClick={(i) => handleClick(i)}
         />
       </div>
@@ -228,21 +231,21 @@ export const GameTicTacToe9x9 = () => {
           cellid="1"
           active={state.activeCell}
           winner={state.cellWinners[1]}
-          squares={current.squares[1]}
+          squares={squares[1]}
           onClick={(i) => handleClick(i)}
         />
         <Cell
           cellid="4"
           active={state.activeCell}
           winner={state.cellWinners[4]}
-          squares={current.squares[4]}
+          squares={squares[4]}
           onClick={(i) => handleClick(i)}
         />
         <Cell
           cellid="7"
           active={state.activeCell}
           winner={state.cellWinners[7]}
-          squares={current.squares[7]}
+          squares={squares[7]}
           onClick={(i) => handleClick(i)}
         />
       </div>
@@ -251,21 +254,21 @@ export const GameTicTacToe9x9 = () => {
           cellid="2"
           active={state.activeCell}
           winner={state.cellWinners[2]}
-          squares={current.squares[2]}
+          squares={squares[2]}
           onClick={(i) => handleClick(i)}
         />
         <Cell
           cellid="5"
           active={state.activeCell}
           winner={state.cellWinners[5]}
-          squares={current.squares[5]}
+          squares={squares[5]}
           onClick={(i) => handleClick(i)}
         />
         <Cell
           cellid="8"
           active={state.activeCell}
           winner={state.cellWinners[8]}
-          squares={current.squares[8]}
+          squares={squares[8]}
           onClick={(i) => handleClick(i)}
         />
       </div>
