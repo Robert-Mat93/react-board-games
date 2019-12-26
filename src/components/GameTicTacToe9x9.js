@@ -101,7 +101,7 @@ export const GameTicTacToe9x9 = () => {
   }
 	
   useEffect(() => {
-    const href = "https://break-games-scr.xyz:5000/join_game/" + globalState.gameID;
+    const href = "http://localhost:5000/join_game/" + globalState.gameID;
     const source = new EventSource(href);
     source.addEventListener('message', handleEvents)
     dispatch({
