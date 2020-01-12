@@ -1,14 +1,14 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 body {
@@ -22,14 +22,75 @@ body {
   height: 100%;
 }
 
-.GameTicTacToe, .App {
+.GameTicTacToe,
+.App {
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(to bottom, rgba(206,220,231,1) 0%,rgba(89,106,114,1) 100%);
+  background: linear-gradient(
+    to bottom,
+    rgba(206, 220, 231, 1) 0%,
+    rgba(89, 106, 114, 1) 100%
+  );
+}
+
+.UserRegistration {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.RegistrationInput {
+  border: 1px solid #999;
+  padding: 0.5rem;
+  width: 300px;
+  height: 20px;
+}
+
+.RegistrationButton {
+  padding: 0.25rem;
+  width: 150px;
+}
+
+.RegistrationLabel {
+  display: flex;
+  justify-content: center;
+}
+
+.RegistrationContainer {
+  position: relative;
+}
+
+.UserSelectList {
+  border: 1px solid #999;
+  border-top-width: 0;
+  list-style: none;
+  margin-top: 0;
+  max-height: 143px;
+  overflow-y: auto;
+  padding-left: 0;
+  width: calc(300px + 1rem);
+  position: absolute;
+  top: 40px;
+}
+
+.UserSelectList li {
+  padding: 0.5rem;
+}
+
+.UserSelectActive,
+.UserSelectList li:hover {
+  background-color: #008f68;
+  color: #fae042;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.UserSelectList li:not(:last-of-type) {
+  border-bottom: 1px solid #999;
 }
 
 .GameSelect {
@@ -38,14 +99,15 @@ body {
   justify-content: center;
 }
 
-.join, .start {
+.join,
+.start {
   box-sizing: border-box;
   width: 15em;
   height: 3em;
   font-size: 20px;
   border-radius: 0.5em;
   margin: 0.5em;
-  box-shadow: 0 0 1em rgba(0,0,0,0.2);
+  box-shadow: 0 0 1em rgba(0, 0, 0, 0.2);
   color: white;
   font-family: sans-serif;
   text-transform: capitalize;
@@ -78,7 +140,8 @@ body {
   padding-left: 5%;
 }
 
-ol, ul {
+ol,
+ul {
   padding-left: 30px;
 }
 
@@ -102,8 +165,7 @@ ol, ul {
   border: 3px solid black;
 }
 
-
-.cell.active{
+.cell.active {
   border: 3px solid blue;
 }
 
@@ -137,30 +199,36 @@ ol, ul {
   background-color: #d89561;
 }
 
-.square:focus, .start:focus, .join:focus {
+.square:focus,
+.start:focus,
+.join:focus {
   outline: none;
 }
 
-.square::-moz-focus-inner, .start::-moz-focus-inner, .join::-moz-focus-inner {
+.square::-moz-focus-inner,
+.start::-moz-focus-inner,
+.join::-moz-focus-inner {
   border: 0;
 }
-
-
 
 .kbd-navigation .square:focus {
   background: #ddd;
 }
-
 
 .game-info {
   margin: 20px;
   font: monaco;
 }
 
-.modal, .popup-overlay {
+.modal,
+.popup-overlay {
   font-size: 12px;
-  background: linear-gradient(to bottom, rgba(206,220,231,1) 0%,rgba(89,106,114,1) 100%);
-  border-radius: 3px
+  background: linear-gradient(
+    to bottom,
+    rgba(206, 220, 231, 1) 0%,
+    rgba(89, 106, 114, 1) 100%
+  );
+  border-radius: 3px;
 }
 .modal > .header {
   width: 100%;
